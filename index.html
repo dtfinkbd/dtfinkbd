@@ -407,7 +407,130 @@
         font-size: 14px;
       }
     }
-	
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #111;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 40px 10px;
+      font-family: sans-serif;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .rainbow-box {
+      width: 280px;
+      height: 320px;
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .rainbow-box::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet, red);
+      background-size: 400% 400%;
+      animation: rainbowMove 6s linear infinite;
+      z-index: 0;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 10px;
+    }
+
+    .main-heading {
+      font-size: 24px;
+      font-weight: bold;
+      color: white;
+      margin-bottom: 10px;
+      background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+      background-size: 400%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: textRainbow 5s linear infinite;
+    }
+
+    .sub-heading {
+      font-size: 18px;
+      color: #fff;
+      margin-bottom: 5px;
+    }
+
+    .slider {
+      width: 90%;
+      height: 250px;
+      position: relative;
+    }
+
+    .slider img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+      cursor: pointer;
+    }
+
+    .slider img.active {
+      opacity: 1;
+    }
+
+    @keyframes rainbowMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes textRainbow {
+      0% { background-position: 0% }
+      100% { background-position: 100% }
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.85);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal img {
+      max-width: 90%;
+      max-height: 90%;
+      border: 4px solid white;
+      border-radius: 10px;
+    }
+
+    @media (max-width: 640px) {
+      .rainbow-box {
+        width: 90vw;
+      }
+    }
   </style>
 
 <!-- Meta Pixel Code -->
@@ -519,6 +642,70 @@ src="https://www.facebook.com/tr?id=1174051107535633&ev=PageView&noscript=1"
 	<p style="font-size: 20px;font-weight: bold;"><strong style="color:red;font-size: 20px;font-weight: bold;">⭐ বিঃদ্রঃ</strong> প্রতিটি অর্ডারে ৫০% পার্সেন্ট টাকা অগ্রিম পেমেন্ট করতে হবে ⭐</p>
   </div>
 </section>
+
+	<div class="container">
+  <!-- Box 1 -->
+  <div class="rainbow-box">
+    <div class="content">
+      <div class="main-heading">DTF Ink BD</div>
+      <div class="sub-heading"></div>
+      <div class="slider" data-images='[
+        "https://cdn.webshopapp.com/shops/70265/files/446403830/image-dtf-print-on-the-back.jpg",
+        "https://continuousinksupplysystem.com.au/img/p/1/0/2/1/8/10218.jpg",
+        "https://coldesi.com/wp-content/uploads/2024/06/dtf-tshirt-stack2-3-scaled.webp",
+        "https://direct-to-film.co.za/wp-content/uploads/2022/05/Website_Direct_to_film_Banner_20220307_isolated_b.png",
+        "https://static.tildacdn.net/tild3638-3962-4933-b530-366336326638/dtf-made-in-eu.png",
+        "https://audleydtfprinter.com/wp-content/uploads/2023/03/dtf-printer-61-8074.png",
+        "https://ameyawdebrah.com/wp-content/uploads/2023/12/Hero-Slider-DTF02.png"
+      ]'></div>
+    </div>
+  </div>
+
+  <!-- Box 2 -->
+  <div class="rainbow-box">
+    <div class="content">
+      <div class="main-heading">DTF Ink BD</div>
+      <div class="sub-heading"></div>
+      <div class="slider" data-images='[
+        "https://www.rainbow-inkjet.com/uploads/dtf-samples-2.png",
+        "https://mikkuprint.com/wp-content/uploads/2024/10/dtf-print.png",
+		"https://sublicool.com/wp-content/uploads/2022/11/UV-DTF-AB-Film-Printing-Machine.png",
+        "https://dtfsrilanka.com/wp-content/uploads/2024/12/1.png"
+      ]'></div>
+    </div>
+  </div>
+</div>
+
+<!-- Image Zoom Modal -->
+<div class="modal" id="imageModal" onclick="this.style.display='none'">
+  <img id="modalImage" src="" alt="Zoomed Image">
+</div>
+
+<script>
+  document.querySelectorAll('.slider').forEach(slider => {
+    const images = JSON.parse(slider.getAttribute('data-images'));
+    let index = 0;
+
+    const img = document.createElement('img');
+    img.src = images[index];
+    img.classList.add('active');
+    slider.appendChild(img);
+
+    img.addEventListener('click', () => {
+      document.getElementById('modalImage').src = img.src;
+      document.getElementById('imageModal').style.display = 'flex';
+    });
+
+    setInterval(() => {
+      index = (index + 1) % images.length;
+      img.classList.remove('active');
+      setTimeout(() => {
+        img.src = images[index];
+        img.classList.add('active');
+      }, 100);
+    }, 2000); // 2 seconds
+  });
+</script>
 
 
 <section class="video">
