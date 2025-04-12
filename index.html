@@ -18,7 +18,6 @@
       text-decoration: none;  /* আন্ডারলাইন সরিয়ে দেওয়া */
       color: #0077b6;  /* লিঙ্কের সাধারণ রঙ */
       transition: all 0.3s ease;  /* ট্রানজিশন ইফেক্ট */
-      /* Note: Removed the overly broad 'a { color: black; font-weight: bold; font-size: 20px; }' */
     }
 
     /* হোভার বা ফোকাস করার সময় */
@@ -43,10 +42,30 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     }
 
+    /* --- নতুন CSS: Header H1 রেইনবো অ্যানিমেশন --- */
     header h1 {
       margin-bottom: 0.5rem;
-      font-size: 2.8rem; /* Note: Inline style font-size:4em takes precedence in the h1 element */
+	  margin-top: 10px;
+      /* font-size: 2.8rem; /* Replaced by inline style font-size:4em */
+
+      /* Rainbow Animation Styles */
+      background-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet, red);
+      background-size: 400% auto;
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent; /* Fallback */
+      animation: rainbowText 5s linear infinite;
+      display: inline-block; /* Helps background-clip work consistently */
     }
+
+    @keyframes rainbowText {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+    /* --- শেষ: Header H1 রেইনবো অ্যানিমেশন --- */
+
 
     /* Hero Section */
     .hero {
@@ -76,7 +95,7 @@
     /* Product Section */
     .products {
       /* Layout Styles */
-      padding: 4rem 2rem;
+      padding: 2rem 2rem;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 2rem;
@@ -150,12 +169,6 @@
       padding: 2rem; /* Kept original padding */
       box-shadow: 0 6px 18px rgba(0,0,0,0.12);
       transition: transform 0.3s ease;
-      /* Removed conflicting less specific .product style */
-      /* Optional: Styles below were removed as they seemed less specific/conflicting */
-      /* padding: 20px; */
-      /* border-radius: 10px; */
-      /* background: #f9f9f9; */
-      /* border: 1px solid #eee; */
       position: relative; /* Ensure content is above potential pseudo-elements if any */
       z-index: 2; /* Ensure product boxes are above the section's ::before */
     }
@@ -201,7 +214,6 @@
       display: block; /* Prevents bottom space */
       transition: transform 0.3s ease;
       cursor: pointer;
-      /* Removed conflicting border style 'border: 5px solid transparent; border-image: linear-gradient(...);' here */
     }
 
     .gallery a:hover img {
@@ -469,9 +481,9 @@
 
     /* Footer Section Links (distinct from main footer links) */
     section.footer {
-        background: #1c1c1c;
-		color: #333;
-		padding-bottom: 20px;
+        background: #1c1c1c; /* Remove dark background */
+        color: #333; /* Use body text color */
+        padding-bottom: 20px; /* Remove padding if only links */
 		border-bottom: 1px dashed white;
     }
     section.footer a {
@@ -554,7 +566,8 @@
         font-size: 1.5rem; /* Smaller heading */
       }
       header h1 {
-        font-size: 2rem; /* Smaller header */
+        /* Keep inline style font-size: 4em or adjust here if needed */
+         /* font-size: 2rem; */ /* Smaller header if removing inline style */
       }
        .hero h2 {
         font-size: 1.8rem; /* Smaller hero heading */
@@ -594,11 +607,11 @@
           font-size: 0.9rem; /* Adjust contact font size */
           word-break: break-all; /* Prevent overflow */
       }
+       header h1 {
+        /* Adjust font size for small screens if needed */
+        /* font-size: 3em !important; */ /* Example if inline style is kept */
+      }
     }
-
-     @media (max-width: 640px) {
-        /* Already covered by max-width 600px */
-     }
 
   </style>
 </head>
@@ -606,6 +619,7 @@
 <body>
 
 <header>
+  <!-- ইনলাইন স্টাইলটি রয়ে গেছে, CSS এটিকে প্রভাবিত করবে না যদি না !important ব্যবহার করা হয় -->
   <h1 style="text-align:center;font-size:4em;">DTF Ink BD</h1>
   <h2>Get genuine, authentic <strong>DTF</strong> ink and <strong>Powder</strong> for your Lovely printer 🥰 ❣ 💓</h2>
 </header>
@@ -634,13 +648,11 @@
     </ul>
   </div>
 </section>
-
 <section class="quick-contact"
 <h3 style="text-align:center;">☎ Contact for more inquiry:</h3>
 	<div>📞 <a href="https://wa.me/+8801724674681"> +88 01724674681</a> <span style="font-size:12px;">(WhatsApp, Imo)</span></div>
 	<div><span style="background-color:red;border-radius:5px;">📧</span> <a href="mailto:dtfinkbd@gmail.com">dtfinkbd@gmail.com</a></div>
 </section>
-
 <section class="gallery">
   <a href="javascript:void(0)" onclick="openModal('https://s.alicdn.com/@sc04/kf/H3df701e7f0084d5484017f3e47cced3ch.jpg_720x720q50.jpg')">
     <img src="https://s.alicdn.com/@sc04/kf/H3df701e7f0084d5484017f3e47cced3ch.jpg_720x720q50.jpg" alt="DTF Ink Image 1">
@@ -653,18 +665,6 @@
   </a>
   <a href="javascript:void(0)" onclick="openModal('https://s.alicdn.com/@sc04/kf/H4d20de8dd4804f4a90f69b295883a5bac.jpg_720x720q50.jpg')">
     <img src="https://s.alicdn.com/@sc04/kf/H4d20de8dd4804f4a90f69b295883a5bac.jpg_720x720q50.jpg" alt="DTF Ink Image 4">
-  </a>
-  <a href="javascript:void(0)" onclick="openModal('https://s.alicdn.com/@sc04/kf/H6ffe1a319816480aa45dc7f0b779aae5U.jpg_720x720q50.jpg')">
-    <img src="https://s.alicdn.com/@sc04/kf/H6ffe1a319816480aa45dc7f0b779aae5U.jpg_720x720q50.jpg" alt="DTF Ink Image 4">
-  </a>
-  <a href="javascript:void(0)" onclick="openModal('https://s.alicdn.com/@sc04/kf/H4c66a04554ca4594acb3d35273b36e31v.jpg_720x720q50.jpg')">
-    <img src="https://s.alicdn.com/@sc04/kf/H4c66a04554ca4594acb3d35273b36e31v.jpg_720x720q50.jpg" alt="DTF Ink Image 4">
-  </a>
-  <a href="javascript:void(0)" onclick="openModal('https://s.alicdn.com/@sc04/kf/H6f6e81f6685944da8dccefddc217a933D.png_720x720q50.jpg')">
-    <img src="https://s.alicdn.com/@sc04/kf/H6f6e81f6685944da8dccefddc217a933D.png_720x720q50.jpg" alt="DTF Ink Image 4">
-  </a>
-  <a href="javascript:void(0)" onclick="openModal('https://s.alicdn.com/@sc04/kf/Ha70dd2870cd3461ebce6590e53a31a24P.jpg_720x720q50.jpg')">
-    <img src="https://s.alicdn.com/@sc04/kf/Ha70dd2870cd3461ebce6590e53a31a24P.jpg_720x720q50.jpg" alt="DTF Ink Image 4">
   </a>
 </section>
 
@@ -731,7 +731,7 @@
   <!-- Box 1 -->
   <div class="rainbow-box">
     <div class="content">
-      <div class="main-heading">DTF Ink BD</div>
+      <div class="main-heading">DTF Printing</div>
       <div class="sub-heading">Samples</div>
       <div class="slider" data-images='[
         "https://cdn.webshopapp.com/shops/70265/files/446403830/image-dtf-print-on-the-back.jpg",
@@ -748,7 +748,7 @@
   <!-- Box 2 -->
   <div class="rainbow-box">
     <div class="content">
-      <div class="main-heading">DTF Ink BD</div>
+      <div class="main-heading">DTF Ink & Film</div>
       <div class="sub-heading">Examples</div>
       <div class="slider" data-images='[
         "https://www.rainbow-inkjet.com/uploads/dtf-samples-2.png",
