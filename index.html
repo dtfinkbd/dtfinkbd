@@ -43,13 +43,14 @@
 
     /* Hero Section */
     .hero {
-      padding: 2rem 0rem;
+      padding: 4rem 0rem;
       background: url('https://s.alicdn.com/@sc04/kf/H3df701e7f0084d5484017f3e47cced3ch.jpg_720x720q50.jpg') no-repeat center;
       background-size: cover;
       text-align: center;
       color: white;
       position: relative;
       text-shadow: 2px 3px 0 #ff0000, 1px 1px 0 #00ff00, 1px 1px 0 #0000ff;
+	      margin-top: -34px;
     }
 
     .hero::after {
@@ -64,6 +65,7 @@
       position: relative;
       font-size: 2.5rem;
       z-index: 1;
+	  margin: 0 auto;
     }
 
     /* Product Section */
@@ -800,7 +802,7 @@
       }
     }
 	
-.header {
+.header-t {
       width: 100%;
       max-width: 1200px;
       margin: 0 auto;
@@ -812,14 +814,9 @@
       animation: slideLeftRight 6s ease-in-out infinite alternate;
     }
 
-    .logo {
-      height: 100px;
-      width: auto;
-    }
-
     .rainbow-3d {
       font-family: 'Russo One', sans-serif;
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-size: clamp(2.5rem, 6vw, 5.5rem);
       font-weight: 800;
       background: linear-gradient(
         270deg,
@@ -841,7 +838,6 @@
       animation: rainbowMove 5s linear infinite;
       display: inline-block;
       letter-spacing: 2px;
-      text-transform: uppercase;
     }
 
     @keyframes rainbowMove {
@@ -856,31 +852,54 @@
       100% { transform: translateX(-30px); }
     }
 
-    .header-p p {
-      margin-top: -27px;
+    header .header-p p {
+      margin-top:-45px;
       text-align: center;
+    position: relative;
+    color: white;
+    font-size: 34px;
     }
 
     @media (max-width: 768px) {
       .header {
         flex-direction: column;
+		height:100%;
       }
-    }
+	  .header-t {
 
+      }
+	  header .header-p p {
+		margin:0 auto;
+		text-align: center;
+		position: relative;
+		color: white;
+		font-size: 33px;
+		height: 158px;
+    }
+	.header-t h1{
+		font-size:4rem;
+	}
+    }
+header{
+	background-color: #7F7F7F;
+    margin: 0 auto;
+    padding: 0;
+	}
   
   </style>
 </head>
 
 <body>
-
-<section class="header">
+<header>
+<section class="header-t">
   <div>
     <h1 class="rainbow-3d">DTF Ink BD</h1>
   </div>
 </section>
 <section class="header-p">
-<p style="font-size: 24px;">Get genuine, authentic <strong>DTF</strong> ink and <strong>Powder</strong> for your Lovely printer 🥰 ❣ 💓</p>
+<p>Get genuine, authentic <strong>DTF</strong> ink and <strong>Powder</strong> for your Lovely printer 🥰 ❣ 💓</p>
 </section>
+</header>
 
 <section class="hero">
   <h2>All Kinds of DTF Ink and Powder Suppliers, </br> We Deliver High-Quality DTF Printing Ink and Powder Directly From The Factory </h2>
