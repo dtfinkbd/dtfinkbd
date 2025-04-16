@@ -12,10 +12,12 @@
 	  
     body {
       margin: 0;
+	  padding:0;
       font-family: 'Inter', sans-serif;
       background-color: #f9fbfc;
       color: #333;
     }
+	
 
     /* সাধারণ লিঙ্ক স্টাইল */
     a {
@@ -37,39 +39,6 @@
       background-color: red;  /* ব্যাকগ্রাউন্ড কালার পরিবর্তন */
       box-shadow: 0 0 10px red, 0 0 20px red, 0 0 30px red;  /* জ্বলজ্বল (glow) ইফেক্ট */
     }
-
-    .header {
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-      color: white;
-      padding: 1rem;
-      text-align: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    }
-
-    /* --- নতুন CSS: Header H1 রেইনবো অ্যানিমেশন --- */
-    .header h1 {
-      margin-bottom: 0.5rem;
-	  margin-top: 10px;
-      /* font-size: 2.8rem; /* Replaced by inline style font-size:4em */
-
-      /* Rainbow Animation Styles */
-      background-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet, red);
-      background-size: 400% auto;
-      background-clip: text;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      color: transparent; /* Fallback */
-      animation: rainbowText 5s linear infinite;
-      display: inline-block; /* Helps background-clip work consistently */
-    }
-
-    @keyframes rainbowText {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-    }
-    /* --- শেষ: Header H1 রেইনবো অ্যানিমেশন --- */
-
 
     /* Hero Section */
     .hero {
@@ -829,17 +798,93 @@
         font-size: 18px;
       }
     }
+	
+.header {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      animation: slideLeftRight 6s ease-in-out infinite alternate;
+    }
+
+    .logo {
+      height: 100px;
+      width: auto;
+    }
+
+    .rainbow-3d {
+      font-family: 'Russo One', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 800;
+      background: linear-gradient(
+        270deg,
+        #ff0000,
+        #ff7f00,
+        #ffff00,
+        #00ff00,
+        #0000ff,
+        #4b0082,
+        #8f00ff
+      );
+      background-size: 500% 500%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow:
+        1px 1px 2px rgba(255, 255, 255, 0.2),
+        2px 2px 4px rgba(0, 0, 0, 0.7),
+        3px 3px 6px rgba(0, 0, 0, 0.5);
+      animation: rainbowMove 5s linear infinite;
+      display: inline-block;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    @keyframes rainbowMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes slideLeftRight {
+      0% { transform: translateX(-30px); }
+      50% { transform: translateX(30px); }
+      100% { transform: translateX(-30px); }
+    }
+
+    p {
+      font-size: 24px;
+      margin-top: -30px;
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        flex-direction: column;
+      }
+
+      p {
+        font-size: 18px;
+      }
+    }
+
   
   </style>
 </head>
 
 <body>
 
-<header>
-  <!-- ইনলাইন স্টাইলটি রয়ে গেছে, CSS এটিকে প্রভাবিত করবে না যদি না !important ব্যবহার করা হয় -->
-  <h1 style="text-align:center;font-size:4em;">DTF Ink BD</h1>
-  <h2>Get genuine, authentic <strong>DTF</strong> ink and <strong>Powder</strong> for your Lovely printer 🥰 ❣ 💓</h2>
-</header>
+<section class="header">
+  <div>
+    <h1 class="rainbow-3d">DTF Ink BD</h1>
+    <p style="font-size: 24px;">Get genuine, authentic <strong>DTF</strong> ink and <strong>Powder</strong> for your Lovely printer 🥰 ❣ 💓</p>
+  </div>
+</section>
+
+
+
 
 <section class="hero">
   <h2>All Kinds of DTF Ink and Powder Suppliers, </br> We Deliver High-Quality DTF Printing Ink and Powder Directly From The Factory </h2>
