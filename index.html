@@ -624,6 +624,75 @@
     max-width: 1000px;
     margin: 3rem auto;
 }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #000;
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: sans-serif;
+    }
+
+    .carousel {
+      width: 400px;
+      height: 300px;
+      perspective: 1000px;
+    }
+
+    .carousel-inner {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 1s;
+    }
+
+    .carousel-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      left: 0;
+      top: 0;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+      transition: transform 0.3s ease-in-out;
+      cursor: pointer;
+    }
+
+    .carousel-inner img:hover {
+      transform: scale(1.1);
+      z-index: 2;
+    }
+
+    /* Lightbox Styles */
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.85);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+      box-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
+    }
   </style>
 </head>
 
@@ -690,6 +759,60 @@
     <img src="https://s.alicdn.com/@sc04/kf/Ha70dd2870cd3461ebce6590e53a31a24P.jpg_720x720q50.jpg" alt="DTF Ink Image 4">
   </a>
 </section>
+
+<!-- 3D Image Carousel -->
+  <div class="carousel">
+    <div class="carousel-inner" id="carousel">
+      <img src="https://www.brildor.com/blog/wp-content/uploads/2021/07/banner-dtf-direct-to-film-1024x581-1.jpg"  alt="ডিটিএফ ইঙ্ক বাংলাদেশ"/>
+      <img src="https://www.shutterstock.com/image-photo/dtf-printing-t-shirt-sri-600nw-2491979587.jpg"  alt="DTF Ink BD"/>
+      <img src="https://cdn.shopify.com/s/files/1/0555/2193/5648/files/homepage-slider-3.jpg?v=1665607638"  alt="DTF Printing Ink in Bangladesh"/>
+      <img src="https://5.imimg.com/data5/ANDROID/Default/2022/7/YA/GF/PA/156242129/product-jpeg-500x500.jpg"  alt="DTF Printing Ink in Chattogram"/>
+      <img src="https://www.subli-star.com/wp-content/uploads/T-Shirt-DTF-Printing-Process-1200x900-cropped.jpg"  alt="DTF Printing Ink price in Chattogram"/>
+      
+      <img src="https://www.hongsam.cn/static/upload/image/20231207/1701939263353577.jpg"  alt="DTF Ink Price Bangladesh"/>
+      <img src="https://www.hongsam.cn/static/upload/image/20230919/1695103832691906.jpg"  alt="DTF Ink Price in Bangladesh"/>
+      <img src="https://www.hongsam.cn/static/upload/image/20231207/1701936591469758.jpg"  alt="DTF Ink Price in BD"/>
+    </div>
+  </div>
+
+  <!-- Lightbox (fullscreen preview) -->
+  <div class="lightbox" id="lightbox">
+    <img src="" alt="Preview" id="lightbox-img" />
+  </div>
+
+  <script>
+    const carousel = document.getElementById("carousel");
+    const images = carousel.getElementsByTagName("img");
+    const total = images.length;
+    const step = 360 / total;
+    let angle = 0;
+
+    // Position images in circle
+    for (let i = 0; i < total; i++) {
+      images[i].style.transform = `rotateY(${i * step}deg) translateZ(500px)`;
+    }
+
+    // Rotate every 2 seconds
+    setInterval(() => {
+      angle += step;
+      carousel.style.transform = `rotateY(-${angle}deg)`;
+    }, 2000);
+
+    // Lightbox handling
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+
+    Array.from(images).forEach(img => {
+      img.addEventListener("click", (e) => {
+        lightbox.style.display = "flex";
+        lightboxImg.src = e.target.src;
+      });
+    });
+
+    lightbox.addEventListener("click", () => {
+      lightbox.style.display = "none";
+    });
+  </script>
 
 <!-- Modal for Image Zoom (Shared by Gallery and Sliders) -->
 <div class="modal" id="imageModal">
