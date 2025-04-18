@@ -1,80 +1,267 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Galaxy Stars Background</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sayful I. Shahin</title>
   <style>
-    html, body {
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      overflow: hidden;
-      background: black;
-      height: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
-    canvas {
-      position: absolute;
+    body {
+      background: radial-gradient(ellipse at bottom, #0d1b2a 0%, #000000 100%);
+      color: #fff;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Stars background */
+    .stars, .stars2, .stars3 {
+      position: fixed;
+      width: 100%;
+      height: 100%;
       top: 0;
       left: 0;
-      display: block;
       z-index: -1;
+      background-repeat: repeat;
+      background-position: 0 0;
+      animation: moveStars 100s linear infinite;
+    }
+
+    .stars {
+      background-image: url('https://media.tenor.com/fDL92-OBZ-IAAAAM/stj%C3%A4rna-star.gif');
+      opacity: 0.5;
+    }
+
+    .stars2 {
+      background-image: url('https://phoneky.co.uk/thumbs/screensavers/down/nature/star_1fnffj8a.gif');
+      animation-duration: 150s;
+      opacity: 0.3;
+    }
+
+    .stars3 {
+      background-image: url('https://media.tenor.com/nrHCp6m-77oAAAAM/stars-falling.gif');
+      animation-duration: 200s;
+      opacity: 0.2;
+    }
+
+    @keyframes moveStars {
+      from { background-position: 0 0; }
+      to { background-position: -10000px 5000px; }
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 50px auto;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      border: 1px solid #ffffff22;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.1);
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .profile-img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      margin: 0 auto 20px;
+      display: block;
+      padding: 5px;
+      background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet);
+      background-size: 400% 400%;
+      animation: rainbow 8s ease infinite, float 3s infinite ease-in-out;
+    }
+
+    @keyframes rainbow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 3em;
+      margin-bottom: 10px;
+      background: linear-gradient(90deg, #ff00cc, #3333ff, #00ffcc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .section {
+      margin-top: 40px;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1s ease;
+    }
+
+    .section.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h2 {
+      font-size: 2em;
+      margin-bottom: 15px;
+      color: #00e6e6;
+    }
+
+    p {
+      font-size: 1.1em;
+      margin-bottom: 10px;
+    }
+
+    .highlight {
+      color: #ffd700;
+      font-weight: bold;
+    }
+
+    .category {
+      background: #111;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 10px;
+      transition: 0.3s;
+      box-shadow: 0 0 10px #00ffc3;
+      cursor: pointer;
+    }
+
+    .category:hover {
+      transform: scale(1.03) rotate(-1deg);
+      background: #1f1f1f;
+      box-shadow: 0 0 20px #ff00ff;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: linear-gradient(45deg, #ff00cc, #3333ff);
+      color: white;
+      border-radius: 30px;
+      margin-top: 20px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 10px #ff00cc;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: scale(0.9); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: absolute;
+      color: #ff4081;
+      font-size: 20px;
+      animation: floatUp 3s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes floatUp {
+      0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-200px) scale(0.5);
+      }
     }
   </style>
 </head>
 <body>
 
-<canvas id="star-canvas"></canvas>
+  <!-- Star Layers -->
+  <div class="stars"></div>
+  <div class="stars2"></div>
+  <div class="stars3"></div>
 
-<script>
-  const canvas = document.getElementById('star-canvas');
-  const ctx = canvas.getContext('2d');
-  let stars = [];
+  <!-- Floating Hearts Container -->
+  <div id="hearts"></div>
 
-  function initStars(numStars) {
-    stars = [];
-    for (let i = 0; i < numStars; i++) {
-      stars.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        radius: Math.random() * 1.5,
-        alpha: Math.random(),
-        dx: (Math.random() - 0.5) * 0.2,
-        dy: (Math.random() - 0.5) * 0.2,
-        dr: (Math.random() - 0.5) * 0.02,
-        da: (Math.random() - 0.5) * 0.02
-      });
-    }
-  }
+  <div class="container">
+    <img src="Shahin-CV.png" alt="Sayful I. Shahin" class="profile-img"/>
+    <h1>Sayful I. Shahin</h1>
 
-  function animateStars() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    stars.forEach(star => {
-      star.x += star.dx;
-      star.y += star.dy;
-      star.alpha += star.da;
+    <div class="section" id="about">
+      <h2>About Me</h2>
+      <p>I’m <span class="highlight">Md. Sayful Islam Shahin</span>, an experienced IT and marketing professional from <span class="highlight">Dhaka</span>, originally from <span class="highlight">Lalmonirhat</span>. With over 6 years of experience, I specialize in technical and creative digital services.</p>
+    </div>
 
-      if (star.alpha < 0.1 || star.alpha > 1) {
-        star.da *= -1;
-      }
+    <div class="section" id="expertise">
+      <h2>Expertise</h2>
+      <div class="category">🎯 Digital Marketing (Facebook, Google, Email)</div>
+      <div class="category">💻 Web Design, Hosting, Domain</div>
+      <div class="category">🧾 Payroll, ERP & Excel Automation</div>
+      <div class="category">📡 Networking & CCTV Setup</div>
+      <div class="category">📧 Email POP3/IMAP Setup</div>
+    </div>
 
-      ctx.beginPath();
-      ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
-      ctx.fill();
+    <div class="section" id="projects">
+      <h2>Projects</h2>
+      <p>🚀 Founder of <span class="highlight">DTF Ink BD</span> – a premium brand for DTF printing supplies.</p>
+      <p>🛠️ Created Excel-based payroll & attendance systems.</p>
+      <p>🧢 Building a full-featured product website for Cap/Hat business.</p>
+    </div>
+
+    <div class="section" id="contact">
+      <h2>Let's Connect</h2>
+      <p>Need help with your next IT or marketing project? I’m ready to collaborate.</p>
+      <a href="mailto:dmsshahin@gmail.com" class="btn">Send Email</a>
+    </div>
+
+    <div class="section" id="hire-me">
+      <h2>Hire Me</h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 15px;">
+        <a href="https://wa.me/8801724674681" class="btn" style="background: linear-gradient(45deg, #25D366, #128C7E);">WhatsApp</a>
+        <a href="https://www.facebook.com/SayfulShahin/" class="btn" style="background: linear-gradient(45deg, #0084ff, #0057e7);">Messenger</a>
+        <a href="mailto:dmsshahin@gmail.com" class="btn" style="background: linear-gradient(45deg, #ff512f, #dd2476);">Email</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Floating hearts effect
+    document.body.addEventListener('mousemove', (e) => {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = e.pageX + 'px';
+      heart.style.top = e.pageY + 'px';
+      heart.innerText = '❤️';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 3000);
     });
-    requestAnimationFrame(animateStars);
-  }
 
-  function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    initStars(250); // You can increase star count if needed
-  }
+    // Animate sections on scroll
+    const sections = document.querySelectorAll('.section');
+    const showSections = () => {
+      const triggerBottom = window.innerHeight * 0.85;
+      sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top < triggerBottom) {
+          section.classList.add('active');
+        }
+      });
+    };
 
-  window.addEventListener('resize', resizeCanvas);
-  resizeCanvas();
-  animateStars();
-</script>
-
+    window.addEventListener('scroll', showSections);
+    window.addEventListener('load', showSections);
+  </script>
 </body>
 </html>
