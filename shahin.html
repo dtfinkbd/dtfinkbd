@@ -1,110 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sayful I. Shahin - Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sayful I. Shahin</title>
   <style>
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
     body {
-      background: linear-gradient(to right, #00c6ff, #0072ff);
+      background: linear-gradient(to right, #000000, #1a1a2e);
       color: #fff;
-      line-height: 1.6;
-      padding: 20px;
+      overflow-x: hidden;
+      position: relative;
     }
 
     .container {
-      max-width: 900px;
-      margin: auto;
-      background: #ffffff10;
-      backdrop-filter: blur(10px);
+      max-width: 1000px;
+      margin: 50px auto;
       padding: 30px;
-      border-radius: 15px;
-      border: 2px solid #ffffff50;
-      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      border: 1px solid #ffffff22;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.1);
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .profile-img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      margin: 0 auto 20px;
+      display: block;
+      border: 5px solid #00fff7;
+      box-shadow: 0 0 20px #00fff7;
+      animation: float 3s infinite ease-in-out;
     }
 
     h1 {
       text-align: center;
       font-size: 3em;
       margin-bottom: 10px;
-      background: linear-gradient(45deg, #ffeb3b, #e91e63, #00e5ff);
+      background: linear-gradient(90deg, #ff00cc, #3333ff, #00ffcc);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
+    .section {
+      margin-top: 40px;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1s ease;
+    }
+
+    .section.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     h2 {
-      margin-top: 20px;
-      font-size: 1.8em;
-      color: #ffeb3b;
+      font-size: 2em;
+      margin-bottom: 15px;
+      color: #00e6e6;
     }
 
     p {
-      margin: 10px 0;
       font-size: 1.1em;
+      margin-bottom: 10px;
     }
 
     .highlight {
-      color: #00ffea;
+      color: #ffd700;
       font-weight: bold;
     }
 
-    .section {
-      margin-bottom: 30px;
+    .category {
+      background: #111;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 10px;
+      transition: 0.3s;
+      box-shadow: 0 0 10px #00ffc3;
+      cursor: pointer;
+    }
+
+    .category:hover {
+      transform: scale(1.03) rotate(-1deg);
+      background: #1f1f1f;
+      box-shadow: 0 0 20px #ff00ff;
     }
 
     .btn {
       display: inline-block;
       padding: 10px 20px;
-      background: #ff4081;
+      background: linear-gradient(45deg, #ff00cc, #3333ff);
       color: white;
-      text-decoration: none;
-      border-radius: 25px;
+      border-radius: 30px;
       margin-top: 20px;
+      text-decoration: none;
       transition: 0.3s;
     }
 
     .btn:hover {
-      background: #f50057;
+      transform: scale(1.1);
+      box-shadow: 0 0 10px #ff00cc;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: scale(0.9); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: absolute;
+      color: #ff4081;
+      font-size: 20px;
+      animation: floatUp 3s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes floatUp {
+      0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-200px) scale(0.5);
+      }
     }
   </style>
 </head>
 <body>
+
+  <!-- Floating Hearts Container -->
+  <div id="hearts"></div>
+
   <div class="container">
+    <img src="https://i.imgur.com/4ZQZ4Lp.png" alt="Sayful I. Shahin" class="profile-img"/>
     <h1>Sayful I. Shahin</h1>
-    <div class="section">
+
+    <div class="section" id="about">
       <h2>About Me</h2>
-      <p>Hello! I'm <span class="highlight">Md. Sayful Islam Shahin</span>, a multi-talented professional with over <span class="highlight">6 years of experience</span> in IT support, Payroll & ERP systems, Networking, CCTV installation, and Digital Marketing.</p>
-      <p>Based in <span class="highlight">Dhaka</span>, originally from <span class="highlight">Lalmonirhat</span>, I have a strong passion for technology, problem-solving, and business growth through modern digital solutions.</p>
+      <p>I’m <span class="highlight">Md. Sayful Islam Shahin</span>, an experienced IT and marketing professional from <span class="highlight">Dhaka</span>, originally from <span class="highlight">Lalmonirhat</span>. With over 6 years of experience, I specialize in technical and creative digital services.</p>
     </div>
 
-    <div class="section">
+    <div class="section" id="expertise">
       <h2>Expertise</h2>
-      <p>✅ Digital Marketing (Facebook Ads, Google Ads, Email Campaigns)</p>
-      <p>✅ Web Design & Hosting (HTML, CSS, WordPress)</p>
-      <p>✅ Payroll & ERP Software Support</p>
-      <p>✅ Networking & CCTV Installation</p>
-      <p>✅ Email Setup (POP3, IMAP, Webmail)</p>
+      <div class="category">🎯 Digital Marketing (Facebook, Google, Email)</div>
+      <div class="category">💻 Web Design, Hosting, Domain</div>
+      <div class="category">🧾 Payroll, ERP & Excel Automation</div>
+      <div class="category">📡 Networking & CCTV Setup</div>
+      <div class="category">📧 Email POP3/IMAP Setup</div>
     </div>
 
-    <div class="section">
-      <h2>Current Projects</h2>
-      <p>🔸 Founder of <span class="highlight">DTF Ink BD</span> – Supplying premium quality DTF Ink & Powder across Bangladesh.</p>
-      <p>🔸 Developing a fully automated Excel-based Payroll & Attendance System for small businesses.</p>
-      <p>🔸 Launching a product-based website for <span class="highlight">Cap/Hat</span> businesses with interactive product displays.</p>
+    <div class="section" id="projects">
+      <h2>Projects</h2>
+      <p>🚀 Founder of <span class="highlight">DTF Ink BD</span> – a premium brand for DTF printing supplies.</p>
+      <p>🛠️ Created Excel-based payroll & attendance systems.</p>
+      <p>🧢 Building a full-featured product website for Cap/Hat business.</p>
     </div>
 
-    <div class="section">
+    <div class="section" id="contact">
       <h2>Let's Connect</h2>
-      <p>If you're looking for someone to handle your IT, marketing, or ERP-related needs with care and expertise – I'm here to help!</p>
-      <a href="mailto:sayful@example.com" class="btn">Contact Me</a>
+      <p>Need help with your next IT or marketing project? I’m ready to collaborate.</p>
+      <a href="mailto:sayful@example.com" class="btn">Send Email</a>
     </div>
   </div>
+
+  <script>
+    // Floating hearts effect
+    document.body.addEventListener('mousemove', (e) => {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = e.pageX + 'px';
+      heart.style.top = e.pageY + 'px';
+      heart.innerText = '❤️';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 3000);
+    });
+
+    // Animate sections on scroll
+    const sections = document.querySelectorAll('.section');
+    const showSections = () => {
+      const triggerBottom = window.innerHeight * 0.85;
+      sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top < triggerBottom) {
+          section.classList.add('active');
+        }
+      });
+    };
+
+    window.addEventListener('scroll', showSections);
+    window.addEventListener('load', showSections);
+  </script>
 </body>
 </html>
