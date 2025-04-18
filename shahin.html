@@ -13,31 +13,45 @@
     }
 
     body {
-      background: black;
+      background: radial-gradient(ellipse at bottom, #0d1b2a 0%, #000000 100%);
       color: #fff;
       overflow-x: hidden;
       position: relative;
     }
 
-    /* Galaxy Stars */
-    body::before {
-      content: '';
+    /* Stars background */
+    .stars, .stars2, .stars3 {
       position: fixed;
       width: 100%;
       height: 100%;
-      background: transparent;
       top: 0;
       left: 0;
       z-index: -1;
-      background-image: radial-gradient(white 1px, transparent 1px);
-      background-size: 2px 2px;
-      animation: twinkle 3s infinite alternate;
+      background-repeat: repeat;
+      background-position: 0 0;
+      animation: moveStars 100s linear infinite;
+    }
+
+    .stars {
+      background-image: url('https://i.ibb.co/vxqJk3p/stars1.png');
       opacity: 0.5;
     }
 
-    @keyframes twinkle {
-      0% { opacity: 0.3; }
-      100% { opacity: 0.8; }
+    .stars2 {
+      background-image: url('https://i.ibb.co/m6zWY8L/stars2.png');
+      animation-duration: 150s;
+      opacity: 0.3;
+    }
+
+    .stars3 {
+      background-image: url('https://i.ibb.co/vZ4BmcW/stars3.png');
+      animation-duration: 200s;
+      opacity: 0.2;
+    }
+
+    @keyframes moveStars {
+      from { background-position: 0 0; }
+      to { background-position: -10000px 5000px; }
     }
 
     .container {
@@ -58,9 +72,16 @@
       border-radius: 50%;
       margin: 0 auto 20px;
       display: block;
-      border: 5px solid #00fff7;
-      box-shadow: 0 0 20px #00fff7;
-      animation: float 3s infinite ease-in-out;
+      padding: 5px;
+      background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet);
+      background-size: 400% 400%;
+      animation: rainbow 8s ease infinite, float 3s infinite ease-in-out;
+    }
+
+    @keyframes rainbow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     h1 {
@@ -165,6 +186,11 @@
   </style>
 </head>
 <body>
+
+  <!-- Star Layers -->
+  <div class="stars"></div>
+  <div class="stars2"></div>
+  <div class="stars3"></div>
 
   <!-- Floating Hearts Container -->
   <div id="hearts"></div>
